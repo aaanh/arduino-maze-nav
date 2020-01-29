@@ -1,4 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "sketch": "blinking-led.ino"
+    "sketch": "blinking-led.ino",
+    "programmer": "AVR ISP",
+    "port": "COM3"
 }
