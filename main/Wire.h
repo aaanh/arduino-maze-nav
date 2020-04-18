@@ -23,7 +23,7 @@
 #define TwoWire_h
 
 #include <inttypes.h>
-#include "arduino/Stream.h"
+#include "../arduino/Stream.h"
 
 #define BUFFER_LENGTH 32
 
