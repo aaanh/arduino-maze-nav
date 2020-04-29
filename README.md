@@ -19,6 +19,12 @@ Build a vehicle that can drive through a RNGesus single-path maze with 90-degree
 | 9 | Breadboard | 1 | Inexplicitly included in final design |
 | 10 | Servo | 1 |
 
+## Project status
+- [Completed and rendered 3D design]()
+- Completed and compiled source code
+- Completed cost table
+- [Completed conceptual circuitry](https://www.circuito.io/app?components=9590,9591,9594,10190,10218,11061,11372,13959,13959,166716,7654321)
+
 ## Project source code
 - Generated through `circuito.io`, source in `/Firmware`
 - Home-baked and sizzled codizzle which izzle included inizzle `main.ino`
