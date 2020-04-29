@@ -1,10 +1,10 @@
-// Libraries:
+ // Libraries:
 #include <Arduino.h> // main library header for arduino boards
 #include "DCMDriverL298.h" // dual H-bridge motor driver
-#include "NewPing.h"
-#include "Wire.h"
-#include <stdio.h>
-#include "LED.h"
+#include "NewPing.h" // this library is for ultrasonic
+#include "Wire.h" // this library is for arduino coms
+#include <stdio.h> // printf("...");
+#include "LED.h" // self-explanatory
 
 // Pin definitions
 // Just blantantly copied from auto-generated code in /Firmware
@@ -47,9 +47,9 @@ DCMDriverL298 dcMotorDriverL298(DCMOTORDRIVERL298_PIN_ENA, DCMOTORDRIVERL298_PIN
   Dev Notes - LED Indicators
 */
 
-LED ledB(LEDB_PIN_VIN);
-LED ledG(LEDG_PIN_VIN);
-LED ledR(LEDR_PIN_VIN);
+LED ledB(LEDB_PIN_VIN); // Blue - turning right
+LED ledG(LEDG_PIN_VIN); // Green - moving forward
+LED ledR(LEDR_PIN_VIN); // Red - turning left
 LED ledY(LEDY_PIN_VIN);
 
 // Setup
@@ -67,10 +67,11 @@ void loop() {
   // Designated: MotorA - right, MotorB - left
   // Designated: hcsr04_1 - sensor front, hcsr04_2 - sensor left
   if (hcsr04_1.ping_cm() >= 25) {
-    ledR.off();
-    ledG.on();
-    ledB.off();
-    ledY.off();
+    // LED Indicators
+    ledR.off(); 
+    ledG.on(); 
+    ledB.off(); 
+    ledY.off(); 
     dcMotorDriverL298.setMotorA(200, 1);
     dcMotorDriverL298.setMotorB(200, 1);
   }
@@ -78,20 +79,23 @@ void loop() {
     if (hcsr04_2.ping_cm() <= 10) { // left-mounted sensor, to turn right, left wheel needs to go forward.
       dcMotorDriverL298.setMotorB(200, 1);
       dcMotorDriverL298.setMotorA(10, 0); // this is to add a bit resistance in right wheel so the turn is more sharp
-      delay(100); // theoretical time it takes to turn.
+      // LED Indicators
       ledR.on();
       ledG.off();
       ledB.off();
       ledY.off();
+      delay(100); // theoretical time it takes to turn.
+      
     }
     else {
       dcMotorDriverL298.setMotorA(200, 1);
       dcMotorDriverL298.setMotorB(10, 0); // same thing as with turning right
-      delay(100);
+      // LED Indicators
       ledR.off();
       ledG.off();
       ledB.on();
       ledY.off();
+      delay(100);
     };
   };
 }
